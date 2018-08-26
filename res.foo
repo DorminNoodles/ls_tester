@@ -1,0 +1,31 @@
+1,19c1,10
+< /Users/lchety/:
+< Applications
+< Desktop
+< Documents
+< Downloads
+< FDF
+< GlowStone_Web
+< Library
+< Movies
+< Music
+< Pictures
+< goinfre
+< http
+< lchety
+< lchety.zip
+< misc
+< projet
+< script-docker.sh
+< terminal-slack
+---
+> 1
+> a.out
+> foo.bar
+> ft_ls.foo
+> ls.foo
+> main.c
+> res.foo
+> }****coucou****{
+> }***get_folder***{
+> }***get_folder***{
