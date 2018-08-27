@@ -6,13 +6,16 @@
 /*   By: lchety <lchety@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 18:31:49 by lchety            #+#    #+#             */
-/*   Updated: 2018/08/26 19:34:47 by lchety           ###   ########.fr       */
+/*   Updated: 2018/08/28 00:44:58 by lchety           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#define PATH "~/projet/ft_ls/"
+
 
 int		test_0();
 int		test_1();
@@ -21,6 +24,15 @@ int		test_3();
 int		test_4();
 int		test_5();
 int		test_6();
+
+// Symbolic_link test
+int		test_7();
+int		test_8();
+
+//parsing argument
+int		test_9();
+
+
 
 
 
@@ -39,11 +51,17 @@ int		main(void)
 	//TEST
 	test_0();
 	test_1();
-	test_2();
-	test_3();
+
+//STRESS TEST
+	// test_2();
+	// test_3();
+
 	test_4();
 	test_5();
 	test_6();
+	test_7();
+	test_8();
+	test_9();
 
 
 	return (0);
@@ -201,5 +219,80 @@ int		test_6()
 		printf("\033[32mtest_6 V\n");
 	else
 		printf("\033[31mtest_6 X\n");
+	return (1);
+}
+
+// Symbolic link
+int		test_7()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	system("mkdir -p boite");
+	system("ln -sf boite symbolic_boite");
+	status = system(PATH "ft_ls 1> ft_ls.foo");
+	orig_status = system("ls -1 1> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_7 V\n");
+	else
+		printf("\033[31mtest_7 X\n");
+	return (1);
+}
+
+// Symbolic link
+int		test_8()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	system("mkdir -p boite");
+	system("ln -sf boite symbolic_boite");
+	status = system(PATH "ft_ls symbolic_boite 1> ft_ls.foo");
+	orig_status = system("ls -1 symbolic_boite 1> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_8 V\n");
+	else
+		printf("\033[31mtest_8 X\n");
+	return (1);
+}
+
+//parsing argument
+int		test_9()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	system("mkdir -p boite");
+	system("ln -sf boite symbolic_boite");
+	status = system(PATH "ft_ls symbolic_boite 1> ft_ls.foo");
+	orig_status = system("ls -1 symbolic_boite 1> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_9 V\n");
+	else
+		printf("\033[31mtest_9 X\n");
 	return (1);
 }
