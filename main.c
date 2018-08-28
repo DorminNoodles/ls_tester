@@ -6,7 +6,7 @@
 /*   By: lchety <lchety@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 18:31:49 by lchety            #+#    #+#             */
-/*   Updated: 2018/08/28 00:44:58 by lchety           ###   ########.fr       */
+/*   Updated: 2018/08/28 19:22:52 by lchety           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int		test_8();
 
 //parsing argument
 int		test_9();
+int		test_10();
+int		test_11();
+int		test_12();
+int		test_13();
 
 
 
@@ -53,16 +57,21 @@ int		main(void)
 	test_1();
 
 //STRESS TEST
-	// test_2();
+	test_2();
 	// test_3();
 
 	test_4();
 	test_5();
 	test_6();
-	test_7();
-	test_8();
-	test_9();
+	// test_7();
+	// test_8();
 
+//PARSING ARGUMENT
+	// test_9();
+	// test_10();
+	// test_11();
+	// test_12();
+	// test_13();
 
 	return (0);
 }
@@ -200,6 +209,7 @@ int		test_5()
 	return (1);
 }
 
+//file doesn't exist
 int		test_6()
 {
 	int status;
@@ -210,8 +220,8 @@ int		test_6()
 	status = 0;
 	orig_status = 0;
 
-	status = system("../ft_ls/ft_ls -1 874821 ~/ 1> ft_ls.foo");
-	orig_status = system("ls -1 874821 ~/ 1> ls.foo");
+	status = system("../ft_ls/ft_ls -1 874821 ~/ &> ft_ls.foo");
+	orig_status = system("ls -1 874821 ~/ &> ls.foo");
 
 	res = system("diff ls.foo ft_ls.foo > res.foo");
 
@@ -283,10 +293,8 @@ int		test_9()
 	status = 0;
 	orig_status = 0;
 
-	system("mkdir -p boite");
-	system("ln -sf boite symbolic_boite");
-	status = system(PATH "ft_ls symbolic_boite 1> ft_ls.foo");
-	orig_status = system("ls -1 symbolic_boite 1> ls.foo");
+	status = system(PATH "ft_ls -- &> ft_ls.foo");
+	orig_status = system("ls -- &> ls.foo");
 
 	res = system("diff ls.foo ft_ls.foo > res.foo");
 
@@ -294,5 +302,97 @@ int		test_9()
 		printf("\033[32mtest_9 V\n");
 	else
 		printf("\033[31mtest_9 X\n");
+	return (1);
+}
+
+int		test_10()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	status = system(PATH "ft_ls --R &> ft_ls.foo");
+	orig_status = system("ls --R &> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_10 V\n");
+	else
+		printf("\033[31mtest_10 X\n");
+	return (1);
+}
+
+int		test_11()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	status = system(PATH "ft_ls -z 2> ft_ls.foo");
+	orig_status = system("ls -z 2> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_11 V\n");
+	else
+		printf("\033[31mtest_11 X\n");
+	return (1);
+}
+
+int		test_12()
+{
+	int status;
+	int orig_status;
+	int res;
+	int i;
+
+	i = 0;
+	status = 0;
+	orig_status = 0;
+
+	system("mkdir -p bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && cd bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && mkdir -p bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && cd bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && mkdir -p bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && cd bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner && mkdir -p bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner/bladerunner");
+
+	status = system(PATH "ft_ls -R 1> ft_ls.foo");
+	orig_status = system("ls -R 1> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_12 V\n");
+	else
+		printf("\033[31mtest_12 X\n");
+	return (1);
+}
+
+//Argumment '--' + files
+int		test_13()
+{
+	int status;
+	int orig_status;
+	int res;
+
+
+	status = 0;
+	orig_status = 0;
+
+	status = system(PATH "ft_ls -- wolf 1> ft_ls.foo");
+	orig_status = system("ls -- wolf 1> ls.foo");
+
+	res = system("diff ls.foo ft_ls.foo > res.foo");
+
+	if (!res)
+		printf("\033[32mtest_13 V\n");
+	else
+		printf("\033[31mtest_13 X\n");
 	return (1);
 }
